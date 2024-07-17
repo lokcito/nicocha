@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.font-nicocha {
+	font-family: 'Playwrite AR', cursive;
+	font-optical-sizing: auto;
+	font-weight: bold;
+	font-style: normal;
+}
+
+.primary-nicocha-bg {
+	background-color: #17153b;
+}
+
+.primary-nicocha-text {
+	color: #433d8b;
+}
+
+.secondary-nicocha-bg {
+	background-color: #2e236c;
+}
+.secondary-nicocha-text {
+	color: #2e236c;
+}
