@@ -2,7 +2,7 @@ import { PUBLIC_BASE_PROJECT } from '$env/static/public';
 
 export async function fetchMocks(code: string, id: number = 0): Promise<any[]> {
 	try {
-		const response = await fetch(`${PUBLIC_BASE_PROJECT}/mocks/${code}${id === 0 ? '' : '/' + id}`);
+		const response = await fetch(`${PUBLIC_BASE_PROJECT}/adminMock/${code}${id === 0 ? '' : '/' + id}`);
 
 		if (!response.ok) {
 			throw new Error(`HTTP error ${response.status}`);
