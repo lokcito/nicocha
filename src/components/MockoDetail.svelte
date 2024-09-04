@@ -32,7 +32,7 @@
 			sufix: inputSufix,
 			data: finalContent,
 			method: inputMethod,
-			status_code: inputStatusCode
+			status_code: parseInt(inputStatusCode)
 		});
 		await loadItems(scope);
 	};
