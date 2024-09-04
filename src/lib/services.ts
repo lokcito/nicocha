@@ -17,7 +17,7 @@ export async function fetchMocks(code: string, id: number = 0): Promise<any[]> {
 	}
 }
 export async function saveMock(body: any) {
-	await fetch(`${PUBLIC_BASE_PROJECT}/funx`, {
+	await fetch(`${PUBLIC_BASE_PROJECT}/adminUpsertMock`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -26,7 +26,7 @@ export async function saveMock(body: any) {
 	});
 }
 export async function deleteMock(scope: string, id: number) {
-	fetch(`${PUBLIC_BASE_PROJECT}/mocks/${scope}/${id}`, {
+	fetch(`${PUBLIC_BASE_PROJECT}/adminMock/${scope}/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json'
