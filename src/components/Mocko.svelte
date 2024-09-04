@@ -2,6 +2,7 @@
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { MockModel } from '../models/mockModel';
 	import { format } from 'date-fns';
+	import { toast } from '@zerodevx/svelte-toast';
 
 	const dispatch = createEventDispatcher();
 
@@ -19,8 +20,8 @@
 	const copyToClipboard = () => {
 		try {
 			navigator.clipboard.writeText(data.fullPath);
+			toast.push('Copiado en tu portapapeles.');
 		} catch (error) {
-			console.log('->', data.fullPath);
 			prompt('Copiar: ', data.fullPath);
 		}
 	};

@@ -68,6 +68,9 @@
 	const selectMocko = (/** @type {any} */ e) => {
 		prevData = e.detail;
 	};
+	const clearPrevData = () => {
+		prevData = {};
+	}
 </script>
 
 <section class="flex w-full flex-col">
@@ -169,7 +172,7 @@
 		</section>
 		<section class="flex w-1/2 p-2">
 			<div class="flex flex-col w-full">
-				<MockoDetail prev={prevData} scope={mockCode}></MockoDetail>
+				<MockoDetail on:clear={clearPrevData} prev={prevData} scope={mockCode}></MockoDetail>
 			</div>
 		</section>
 	</section>

@@ -33,7 +33,7 @@
 		<div class="text-slate-500 font-bold text-xs">Respuesta {valid ? 'Json' : 'Texto Plano'}</div>
 		<div class="text-slate-500 font-bold text-xs">Código de respuesta: {statusCode}</div>
 	</div>
-	<div class="pl-4 pr-4">
+	<div class="pl-4 pr-4 overflow-auto">
 		{#if valid}
 			<div class="wrap">
 				<JsonView {json} />

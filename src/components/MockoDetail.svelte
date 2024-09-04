@@ -1,11 +1,14 @@
 <script lang="ts">
 	import { deleteMock, saveMock } from '$lib/services';
+	import { createEventDispatcher } from 'svelte';
 	import { MockModel } from '../models/mockModel';
 	import { cleanItem, loading, loadItem, loadItems, singleMock } from '../stores/mockStores';
 	import MockoCurl from './MockoCurl.svelte';
 	import MockoResponse from './MockoResponse.svelte';
 	export let scope = '';
 	export let prev: MockModel;
+
+	const dispatch = createEventDispatcher();
 
 	let id: number = 0;
 
@@ -37,7 +40,18 @@
 		await loadItems(scope);
 	};
 
+	const clear = () => {
+		id = 0;
+		tried = false;
+		inputSufix = '';
+		inputMethod = 'GET';
+		inputStatusCode = '200';
+		inputData = '';
+		fullPath = '';
+	};
+
 	$: if (prev) {
+		console.log('ua?', prev);
 		tried = false;
 		loadItem(scope, prev.id);
 	}
@@ -120,15 +134,25 @@
 			></textarea>
 		</div>
 		<div class="flex items-center justify-between mb-4">
-			<button
-				on:click={() => {
-					tried = true;
-				}}
-				class="select-none rounded primary-nicocha-bg py-3 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg hover:shadow-gray-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:bg-blue-gray-500 peer-placeholder-shown:opacity-50 peer-placeholder-shown:shadow-none"
-				type="submit"
-			>
-				Guardar Mock
-			</button>
+			<div>
+				<button
+					on:click={() => {
+						tried = true;
+					}}
+					class="select-none rounded primary-nicocha-bg py-3 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md transition-all hover:shadow-lg hover:shadow-gray-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none peer-placeholder-shown:pointer-events-none peer-placeholder-shown:bg-blue-gray-500 peer-placeholder-shown:opacity-50 peer-placeholder-shown:shadow-none"
+					type="submit"
+				>
+					Guardar Mock
+				</button>
+				{#if id > 0}
+					<!-- svelte-ignore a11y-missing-attribute -->
+					<!-- svelte-ignore a11y-click-events-have-key-events -->
+					<!-- svelte-ignore a11y-no-static-element-interactions -->
+					<a class="underline primary-nicocha-text cursor-pointer" on:click={clear}
+						>En lugar crear nuevo</a
+					>
+				{/if}
+			</div>
 			{#if id > 0}
 				<button
 					on:click={() => {
